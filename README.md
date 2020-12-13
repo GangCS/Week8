@@ -21,8 +21,8 @@ The player can carve mountains by pressing "X" + "Direction"(by arrow keys), car
 https://github.com/GangCS/Week8/blob/master/Assets/Scenes/Week8-Homework/Q5/KeyboardMoverQ5.cs#L7-L25
 https://github.com/GangCS/Week8/blob/master/Assets/Scenes/Week8-Homework/Q5/KeyboardMoverByTileQ5.cs#L11-L71
 ### Q 6
-<br In this Scene the player start in down left of the map and need to get to the gate at the top rihgt of the map he chase by two animes, after he get to the gate he start from the begining but the map is 10% bigger. 
-at the map you have 3 kind of land./>
+ In this Scene the player start in down left of the map and need to get to the gate at the top rihgt of the map he chase by two animes, after he get to the gate he start from the begining but the map is 10% bigger. 
+at the map you have 3 kind of land.
 https://github.com/GangCS/Week8/tree/master/Assets/Scenes/Week8-Homework/Q6
 
 
