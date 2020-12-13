@@ -5,12 +5,13 @@ In this project we worked with <strong>Unity</strong> 2D - Grid ,Tiles and more.
 You can play the game with our changes on: <a href="https://shaharnik.itch.io/brickbreaker">https://shaharnik.itch.io/week8-2d</a> <br />
 <strong>Made by: </strong> <a href="https://github.com/ShaharNik">Shahar Niknazar</a>, <a href="https://github.com/YosefTwito">Yosef Twito</a>, <a href="https://github.com/VadimKachevski">Vadim Kachevski</a> and <a href="https://github.com/darsam44">Dar Sambrano.</a></p>
 ## Assigments
-### Q 1
+### Q 1 + Q 3
 explanation here <br />
-code reference here
-### Q 3
-explanation here <br />
-code reference here
+code reference here <br />
+The dijkstra code :<br /> https://github.com/GangCS/Week8/blob/3f1e694046156afca6834812ee99a124df5090d6/Assets/Scenes/Week8-Homework/Q1%2B3/Dijkstra.cs#L5-L110 <br />
+Allowed tiles and their weight :<br /> https://github.com/GangCS/Week8/blob/3f1e694046156afca6834812ee99a124df5090d6/Assets/Scenes/Week8-Homework/Q1%2B3/AllowedTilesPlusWeight.cs#L7-L24 <br />
+IGraph expansion :<br /> https://github.com/GangCS/Week8/blob/3f1e694046156afca6834812ee99a124df5090d6/Assets/Scenes/Week8-Homework/Q1%2B3/IWGraph.cs#L5-L8 <br />
+TilemapWGraph :<br /> https://github.com/GangCS/Week8/blob/3f1e694046156afca6834812ee99a124df5090d6/Assets/Scenes/Week8-Homework/Q1%2B3/TiltmapWgraph.cs#L9-L52 <br />
 ### Q 4
 explanation here <br />
 code reference here
