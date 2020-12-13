@@ -13,8 +13,9 @@ Allowed tiles and their weight :<br /> https://github.com/GangCS/Week8/blob/3f1e
 IGraph expansion :<br /> https://github.com/GangCS/Week8/blob/3f1e694046156afca6834812ee99a124df5090d6/Assets/Scenes/Week8-Homework/Q1%2B3/IWGraph.cs#L5-L8 <br />
 TilemapWGraph :<br /> https://github.com/GangCS/Week8/blob/3f1e694046156afca6834812ee99a124df5090d6/Assets/Scenes/Week8-Homework/Q1%2B3/TiltmapWgraph.cs#L9-L52 <br />
 ### Q 4
-explanation here <br />
-code reference here
+Generate a Map with 3 types of tiles <br />
+https://github.com/GangCS/Week8/blob/master/Assets/Scenes/Week8-Homework/Q4/TilemapCaveGeneratorExpandedQ4.cs#L78-L80
+https://github.com/GangCS/Week8/blob/master/Assets/Scenes/Week8-Homework/Q4/CaveGeneratorExpandedQ4.cs#L60-L141
 ### Q 5
 The player can carve mountains by pressing "X" + "Direction"(by arrow keys), carving have default cooldown of 2 seconds.<br /> 
 https://github.com/GangCS/Week8/blob/master/Assets/Scenes/Week8-Homework/Q5/KeyboardMoverQ5.cs#L7-L25
