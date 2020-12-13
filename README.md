@@ -1,5 +1,5 @@
 # Week8-2D
-<img src="https://github.com/GangCS/Week8-2D/blob/main/ImagesForReadme/game2d.png" width="400"> <br />
+<img src="https://github.com/GangCS/Week8/blob/master/ImagesForReadme/game2d.png" width="400"> <br />
 Created during <strong>Game Development</strong> course during the third year at <em>Ariel University</em> in the Department of Computer Science, 2020 <br /> 
 In this project we worked with <strong>Unity</strong> 2D - Grid ,Tiles and more.. <br />
 You can play the game with our changes on: <a href="https://shaharnik.itch.io/brickbreaker">https://shaharnik.itch.io/week8-2d</a> <br />
