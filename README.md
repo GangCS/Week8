@@ -6,8 +6,6 @@ You can play the game with our changes on: <a href="https://shaharnik.itch.io/br
 <strong>Made by: </strong> <a href="https://github.com/ShaharNik">Shahar Niknazar</a>, <a href="https://github.com/YosefTwito">Yosef Twito</a>, <a href="https://github.com/VadimKachevski">Vadim Kachevski</a> and <a href="https://github.com/darsam44">Dar Sambrano.</a></p>
 ## Assigments
 ### Q 1 + Q 3
-explanation here <br />
-code reference here <br />
 The dijkstra code :<br /> https://github.com/GangCS/Week8/blob/3f1e694046156afca6834812ee99a124df5090d6/Assets/Scenes/Week8-Homework/Q1%2B3/Dijkstra.cs#L5-L110 <br />
 Allowed tiles and their weight :<br /> https://github.com/GangCS/Week8/blob/3f1e694046156afca6834812ee99a124df5090d6/Assets/Scenes/Week8-Homework/Q1%2B3/AllowedTilesPlusWeight.cs#L7-L24 <br />
 IGraph expansion :<br /> https://github.com/GangCS/Week8/blob/3f1e694046156afca6834812ee99a124df5090d6/Assets/Scenes/Week8-Homework/Q1%2B3/IWGraph.cs#L5-L8 <br />
@@ -21,11 +19,5 @@ The player can carve mountains by pressing "X" + "Direction"(by arrow keys), car
 https://github.com/GangCS/Week8/blob/master/Assets/Scenes/Week8-Homework/Q5/KeyboardMoverQ5.cs#L7-L25
 https://github.com/GangCS/Week8/blob/master/Assets/Scenes/Week8-Homework/Q5/KeyboardMoverByTileQ5.cs#L11-L71
 ### Q 6
- In this Scene the player start in down left of the map and need to get to the gate at the top rihgt of the map he chase by two animes, after he get to the gate he start from the begining but the map is 10% bigger. 
-at the map you have 3 kind of land.
+The player starts at the bottom-left corner of the map. The purpose is to get to the gate in the top-right corner of the map while escaping 2 enemies that chasing you. after he gets to the gate he starts from the begining but the map is a little bigger. 
 https://github.com/GangCS/Week8/tree/master/Assets/Scenes/Week8-Homework/Q6
-
-
-
-
-
