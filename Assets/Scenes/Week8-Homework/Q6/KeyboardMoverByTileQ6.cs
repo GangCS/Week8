@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -9,6 +10,11 @@ public class KeyboardMoverByTileQ6 : KeyboardMoverQ6
     [SerializeField] AllowedTilesQ6 allowedTiles = null;
     [SerializeField] TileBase goal = null;
     [SerializeField] TilemapCaveGeneratorExpandedQ6 script = null;
+
+    [SerializeField] float coolDownTime = 2f;
+    private float carveStart = 0f;
+    [SerializeField] TileBase[] destroyableTiles = null;
+    [SerializeField] TileBase grassTile = null;
 
     private TileBase TileOnPosition(Vector3 worldPosition)
     {
@@ -33,6 +39,41 @@ public class KeyboardMoverByTileQ6 : KeyboardMoverQ6
                 script.restart();
             }
         }
+        carveMountain();
+    }
 
+    private void carveMountain()
+    {
+        // if the player clicked X 
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            if (carveCoolDown() == true) // If cooldown
+            {
+                // Tranform the right position into a Tile
+                TileBase tileOnDirPosition = TileOnPosition(transform.position + dir); // Player can move only to allowed tiles
+
+                // check if the right tile is mountain tileOnRightPosition
+                if (destroyableTiles.Contains(tileOnDirPosition))
+                {
+                    //Debug.Log("Know its mountain ");
+                    // change the mountain tile -> to grass tile
+                    Vector3 playerDir = transform.position + dir;
+                    tilemap.SetTile(tilemap.WorldToCell(playerDir), grassTile);
+                }
+            }
+
+        }
+    }
+    private bool carveCoolDown()
+    {
+        if (Time.time > carveStart + coolDownTime)
+        {
+            carveStart = Time.time;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
