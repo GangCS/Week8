@@ -22,16 +22,16 @@ public class TilemapCaveGeneratorExpandedQ6 : MonoBehaviour {
     [Tooltip("The tile that represents a bush (a passable block)")]
     [SerializeField] TileBase bushTile = null;
 
-    [Tooltip("The tile that represents the goal")]
+    [Tooltip("The tile that represents the target location to pass the level")]
     [SerializeField] TileBase goalTile = null;
 
-    [Tooltip("The tile that represents the goal")]
+    [Tooltip("The first enemy")]
     [SerializeField] GameObject enemy1 = null;
 
-    [Tooltip("The tile that represents the goal")]
+    [Tooltip("The second enemy")]
     [SerializeField] GameObject enemy2 = null;
 
-    [Tooltip("The percent of walls in the initial random map")]
+    [Tooltip("the relative amount of different tiles on the grid")]
     [Range(0, 1)]
     [SerializeField] float randomFillPercent = 0.33f;
 
@@ -68,9 +68,9 @@ public class TilemapCaveGeneratorExpandedQ6 : MonoBehaviour {
 
 
     //Do the simulation in a coroutine so we can pause and see what's going on
-    private IEnumerator SimulateCavePattern()  {
-        for (int i = 0; i < simulationSteps; i++)   {
-            yield return new WaitForSeconds(pauseTime);
+    private IEnumerator SimulateCavePattern() {
+        for (int i = 0; i < simulationSteps; i++) {
+            //yield return new WaitForSeconds(pauseTime); //we dont want to wait in this scenario
 
             //Calculate the new values
             caveGenerator.SmoothMap();
