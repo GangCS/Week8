@@ -6,7 +6,8 @@ using System.Collections;
 /**
  * This class demonstrates the CaveGenerator on a Tilemap.
  * 
- * By: Erel Segal-Halevi
+ * By: Erel Segal-Halevi 
+ * Upgraded by: Yossi Twito
  * Since: 2020-12
  */
 
@@ -68,7 +69,7 @@ public class TilemapCaveGeneratorExpandedQ4 : MonoBehaviour {
 
 
 
-    //Generate a black or white texture depending on if the pixel is cave or wall
+    //Generate a black, green or white texture depending on if the pixel is cave, bush or wall
     //Display the texture on a plane
     private void GenerateAndDisplayTexture(int[,] data) {
         for (int y = 0; y < gridSize; y++) {
