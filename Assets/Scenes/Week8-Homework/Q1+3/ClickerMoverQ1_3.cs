@@ -9,6 +9,7 @@ public class ClickerMoverQ1_3 : TargetMoverQ1_3
     {
         if (Input.GetMouseButton(0))
         {
+            //Moves the player to the target clicked block
             Vector3 newTarget = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             SetTarget(newTarget);
         }

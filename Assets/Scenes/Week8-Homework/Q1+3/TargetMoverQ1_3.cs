@@ -9,6 +9,7 @@ using UnityEngine.Tilemaps;
 public class TargetMoverQ1_3 : MonoBehaviour
 {
     [SerializeField] Tilemap tilemap = null;
+    [Tooltip("The object representing both allowedTiles and their weights")]
     [SerializeField] AllowedTilesPlusWeight allowedTiles = null;
 
     [Tooltip("The speed by which the object moves towards the target, in meters (=grid units) per second")]
@@ -24,7 +25,8 @@ public class TargetMoverQ1_3 : MonoBehaviour
     [SerializeField] Vector3Int targetInGrid;
 
     protected bool atTarget;  // This property is set to "true" whenever the object has already found the target.
-
+    private TilemapWGraph tilemapGraph = null;
+    private float timeBetweenSteps;
     public void SetTarget(Vector3 newTarget)
     {
         if (targetInWorld != newTarget)
@@ -40,15 +42,10 @@ public class TargetMoverQ1_3 : MonoBehaviour
         return targetInWorld;
     }
 
-     private TilemapWGraph tilemapGraph = null;
-    //private TilemapGraph tilemapGraph = null;
-    private float timeBetweenSteps;
-
     protected virtual void Start()
     {
-        int[] test = allowedTiles.getWeights();
-         tilemapGraph = new TilemapWGraph(tilemap, allowedTiles.Get(),allowedTiles.getWeights());
-       // tilemapGraph = new TilemapGraph(tilemap, allowedTiles.Get());
+        //Crate a TilemapWGraph with weights for each tile
+        tilemapGraph = new TilemapWGraph(tilemap, allowedTiles.Get(),allowedTiles.getWeights());
         timeBetweenSteps = 1 / speed;
         StartCoroutine(MoveTowardsTheTarget());
     }
@@ -67,17 +64,29 @@ public class TargetMoverQ1_3 : MonoBehaviour
     {
         Vector3Int startNode = tilemap.WorldToCell(transform.position);
         Vector3Int endNode = targetInGrid;
-        //List<Vector3Int> shortestPath = BFS.GetPath(tilemapGraph, startNode, endNode, maxIterations);
+        //Apply Dijkstra algorithm to find the shortest Path with weights
         List<Vector3Int> shortestPath = Dijekstra.GetPath(tilemapGraph, startNode, endNode);
         Debug.Log("shortestPath = " + string.Join(" , ", shortestPath));
         if (shortestPath.Count >= 2)
         {
             Vector3Int nextNode = shortestPath[1];
             transform.position = tilemap.GetCellCenterWorld(nextNode);
+            //find and set the speed for each tile
+            TileBase currTileBase = TileOnPosition(transform.position);
+            int TileWeight = allowedTiles.getWeights()[allowedTiles.findTilePos(currTileBase)];
+            timeBetweenSteps = TileWeight / speed;
         }
         else
         {
             atTarget = true;
         }
     }
+
+    private TileBase TileOnPosition(Vector3 worldPosition)
+    {
+        Vector3Int cellPosition = tilemap.WorldToCell(worldPosition);
+        return tilemap.GetTile(cellPosition);
+    }
+
+
 }

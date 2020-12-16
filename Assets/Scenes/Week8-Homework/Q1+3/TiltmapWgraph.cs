@@ -4,26 +4,27 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 /**
- * A graph that represents a tilemap, using only the allowed tiles.
+ * A weighted graph that represents a tilemap, using only the allowed tiles.
  */
 public class TilemapWGraph : IWGraph<Vector3Int>
 {
-
-    private Dictionary<TileBase, int> WforEachBase;
+    
     private Tilemap tilemap;
+    //A dictionary representing TileBase and its weight
+    private Dictionary<TileBase, int> WforEachBase;
+    //Array of allowed weights
     private TileBase[] allowedTiles;
 
     public TilemapWGraph(Tilemap tilemap, TileBase[] allowedTiles,int[] weights)
     {
         this.tilemap = tilemap;
         this.allowedTiles = allowedTiles;
-        //TileBase.
         WforEachBase = new Dictionary<TileBase, int>();
+        //Creating the weights Dictionary
         for (int i = 0; i < allowedTiles.Length; i++)
         {
             WforEachBase.Add(allowedTiles[i], weights[i]);
         }
-        
     }
 
     static Vector3Int[] directions = {
@@ -44,6 +45,7 @@ public class TilemapWGraph : IWGraph<Vector3Int>
         }
     }
 
+    //Returns the weight of a node at some position
     public int Weight(Vector3Int node)
     {
         TileBase t = tilemap.GetTile(node);
