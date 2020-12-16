@@ -4,7 +4,7 @@
  * This component allows the player to move by clicking the arrow keys.
  */
 public class KeyboardMoverQ5 : MonoBehaviour {
-    protected Vector3 dir;
+    protected Vector3 dir; // dir will always save the last direction moved
     protected Vector3 NewPosition() {
 
         if (Input.GetKeyDown(KeyCode.LeftArrow)) {
