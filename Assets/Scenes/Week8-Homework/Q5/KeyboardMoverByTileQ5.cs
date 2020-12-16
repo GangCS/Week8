@@ -33,7 +33,7 @@ public class KeyboardMoverByTileQ5: KeyboardMoverQ5
         {
             Debug.Log("You cannot walk on " + tileOnNewPosition + "!");
         }
-        carveMountain(); // check
+        carveMountain(); 
     }
     private void carveMountain()
     {
@@ -59,6 +59,7 @@ public class KeyboardMoverByTileQ5: KeyboardMoverQ5
     }
     private bool carveCoolDown()
     {
+        // This function return true if coolDownTime seconds has passed, else - return false.
         if (Time.time > carveStart + coolDownTime)
         {
             carveStart = Time.time;
