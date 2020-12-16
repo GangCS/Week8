@@ -2,7 +2,7 @@ using System;
 
 /**
  * This class is used to generate a random "cave" map.
- * The map is generated as a two-dimensional array of ints, where "0" denotes floor and "1" denotes wall.
+ * The map is generated as a two-dimensional array of ints, where "0" denotes floor, "1" denotes wall and "2" denotes bush.
  * Initially, the boundaries of the cave are set to "wall", and the inner cells are set at random.
  * Then, a cellular automaton is run in order to smooth out the cave.
  * 
@@ -11,6 +11,7 @@ using System;
  * Using a double-buffer technique explained here: https://github.com/Habrador/Unity-Programming-Patterns#7-double-buffer
  * 
  * Adapted by: Erel Segal-Halevi
+ * Adapted again by: Yossi Twito
  * Since: 2020-12
  */
 public class CaveGeneratorExpandedQ4 {
@@ -59,9 +60,9 @@ public class CaveGeneratorExpandedQ4 {
                 } else {
                     //Random walls and caves
                     double rand = random.NextDouble();
-                    if (rand < randomFillPercent) { bufferOld[x, y] = 0; }
-                    else if (rand < (2*randomFillPercent)) { bufferOld[x, y] = 1; }
-                    else { bufferOld[x, y] = 2; }
+                    if (rand < randomFillPercent) { bufferOld[x, y] = 0; }//Set floor tile
+                    else if (rand < (2*randomFillPercent)) { bufferOld[x, y] = 1; }//Set wall tile
+                    else { bufferOld[x, y] = 2; }//Set bush tile
                 }
             }
         }
@@ -85,7 +86,7 @@ public class CaveGeneratorExpandedQ4 {
                 int [] surroundingWalls = GetSurroundingWallCount(x, y);
 
                 //Use some smoothing rules to generate caves
-                if (surroundingWalls[0] > 4) 
+                if (surroundingWalls[0] > 4)//More than 4 floors around 
                 {
                     bufferNew[x, y] = 0;
                 } 
@@ -93,7 +94,7 @@ public class CaveGeneratorExpandedQ4 {
                 {
                     bufferNew[x, y] = bufferOld[x, y];
                 } 
-                else if (surroundingWalls[1] > 4)
+                else if (surroundingWalls[1] > 4)//More than 4 walls around 
                 {
                     bufferNew[x, y] = 1;
                 }
@@ -101,7 +102,7 @@ public class CaveGeneratorExpandedQ4 {
                 {
                     bufferNew[x, y] = bufferOld[x, y];
                 }
-                else if (surroundingWalls[2] > 4)
+                else if (surroundingWalls[2] > 4)//More than 4 bushes around 
                 {
                     bufferNew[x, y] = 2;
                 }
@@ -118,7 +119,7 @@ public class CaveGeneratorExpandedQ4 {
 
 
 
-    //Given a cell, how many of the 8 surrounding cells are walls?
+    //Given a cell, how many of the 8 surrounding cells are walls? how many are floors? how many are bushes?
     private int[] GetSurroundingWallCount(int cellX, int cellY) {
         int []typeCounter = { 0, 0, 0 }; // { floor, wall, bush }
         for (int neighborX = cellX - 1; neighborX <= cellX + 1; neighborX ++) {
