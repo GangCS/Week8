@@ -5,7 +5,7 @@
  */
 public class KeyboardMoverQ6 : MonoBehaviour
 {
-    protected Vector3 dir;
+    protected Vector3 dir;//Saves the target moving's position for Carving
 
     protected Vector3 NewPosition()
     {
