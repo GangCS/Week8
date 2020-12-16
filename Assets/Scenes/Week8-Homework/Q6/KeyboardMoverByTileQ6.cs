@@ -32,10 +32,9 @@ public class KeyboardMoverByTileQ6 : KeyboardMoverQ6
         }
         else
         {
-            /*            Debug.Log("You cannot walk on " + tileOnNewPosition + "!");*/
+            //if the player is about to touch the goal then restart the game and make it bigger
             if (tileOnNewPosition != null && tileOnNewPosition.Equals(goal))
             {
-                // TilemapCaveGenerator.res
                 script.restart();
             }
         }

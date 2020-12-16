@@ -70,7 +70,7 @@ public class TilemapCaveGeneratorExpandedQ6 : MonoBehaviour {
     //Do the simulation in a coroutine so we can pause and see what's going on
     private IEnumerator SimulateCavePattern() {
         for (int i = 0; i < simulationSteps; i++) {
-            //yield return new WaitForSeconds(pauseTime); //we dont want to wait in this scenario
+            yield return new WaitForSeconds(pauseTime); //we dont want to wait in this scenario
 
             //Calculate the new values
             caveGenerator.SmoothMap();
@@ -80,44 +80,56 @@ public class TilemapCaveGeneratorExpandedQ6 : MonoBehaviour {
         }
         Debug.Log("Simulation completed!");
         bool foundpos = false;
-        int z = 1;
-        while (!foundpos)
+        int positionToPlaceObj = 1;
+        //Generate all the objects
+        //Find a place for the player and place him there
+        //Starting from [1,1] and going [2,2],[3,3].....[n,n] until you find a spot
+        while (!foundpos && positionToPlaceObj<=gridSize)
         {
-            Vector3 vec = new Vector3(z, z, 0);
+            //create a vector with the new potential position
+            Vector3 vec = new Vector3(positionToPlaceObj, positionToPlaceObj, 0);
+            //get the TileBase from the potential position
             TileBase tileOnNewPosition = TileOnPosition(vec);
-            Debug.Log(tileOnNewPosition.name);
+            //If the position is a wall keep going up
             if (wallTile.Equals(tileOnNewPosition))
             {
-                z++;
+                positionToPlaceObj++;
             }
+            //Else we found a "free" spot where we can put the player
             else
             {
+                //Scaling the position of the player to fit the grid box
                 Vector3 scaletofit = player.transform.localScale * 0.5f;
                 scaletofit.z = 0;
                 player.transform.position = vec + scaletofit;
                 foundpos = true;
-                Debug.Log("FOUND");
-            }
-        }
-        bool foundPosForGoal = false;
-        z = gridSize;
-        while(!foundPosForGoal)
-        {
-            Vector3 vec = new Vector3(z, z, 0);
-            TileBase tileOnNewPosition = TileOnPosition(vec);
-            if (tileOnNewPosition== null || wallTile.Equals(tileOnNewPosition))
-            {
-                z--;
-            }
-            else
-            {
-                Vector3Int cellPosition = tilemap.WorldToCell(vec);
-                tilemap.SetTile(cellPosition, goalTile);
-                foundPosForGoal = true;
-                Debug.Log("FOUND spot for goal tile");
             }
         }
         foundpos = false;
+        positionToPlaceObj = gridSize;
+        //Try to find a position for the goal tile
+        //Go from [gridSize,gridSize],[gridSize-1,gridSize-1]....[0,0] 
+        //until you find a spot for the goal tile
+        while (!foundpos && positionToPlaceObj>=0)
+        {
+            Vector3 vec = new Vector3(positionToPlaceObj, positionToPlaceObj, 0);
+            TileBase tileOnNewPosition = TileOnPosition(vec);
+            if (tileOnNewPosition== null || wallTile.Equals(tileOnNewPosition))
+            {
+                positionToPlaceObj--;
+            }
+            else
+            {
+                //Scaling the position of the goal tile to fit the grid box
+                Vector3Int cellPosition = tilemap.WorldToCell(vec);
+                tilemap.SetTile(cellPosition, goalTile);
+                foundpos = true;
+            }
+        }
+        foundpos = false;
+        //Find a spot for 2 enemy players
+        //Try to find a spot for first enemy player
+        //randomize a spot on the grid if there is no wall there then put the enemy player there
         while (!foundpos)
         {
             int x1 = Random.Range(1, gridSize);
@@ -130,14 +142,16 @@ public class TilemapCaveGeneratorExpandedQ6 : MonoBehaviour {
             }
             else
             {
+                //Scaling the position of the enemy player to fit the grid box
                 Vector3 scaletofit = enemy1.transform.localScale * 0.5f;
                 scaletofit.z = 0;
                 enemy1.transform.position = vec + scaletofit;
                 foundpos = true;
-                Debug.Log("FOUND");
             }
         }
         foundpos = false;
+        //Try to find a spot for second enemy player
+        //randomize a spot on the grid if there is no wall there then put the enemy player there
         while (!foundpos)
         {
             int x1 = Random.Range(1, gridSize);
@@ -150,16 +164,13 @@ public class TilemapCaveGeneratorExpandedQ6 : MonoBehaviour {
             }
             else
             {
+                //Scaling the position of the enemy player to fit the grid box
                 Vector3 scaletofit = enemy2.transform.localScale * 0.5f;
                 scaletofit.z = 0;
                 enemy2.transform.position = vec + scaletofit;
                 foundpos = true;
-                Debug.Log("FOUND");
             }
         }
-
-
-
     }
     private TileBase TileOnPosition(Vector3 worldPosition)
     {
@@ -183,6 +194,7 @@ public class TilemapCaveGeneratorExpandedQ6 : MonoBehaviour {
         }
     }
 
+    //Restarting the game creating new grid and scaling it up by 10%
     public void restart()
     {
         tilemap.ClearAllTiles();

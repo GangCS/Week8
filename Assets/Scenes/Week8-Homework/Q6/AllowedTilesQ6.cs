@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 public class AllowedTilesQ6 : MonoBehaviour
 {
-
     [SerializeField] TileBase[] allowedTiles = null;
     public bool Contain(TileBase tile)
     {
