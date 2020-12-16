@@ -59,9 +59,9 @@ public class CaveGeneratorExpandedQ6 {
                 } else {
                     //Random walls and caves
                     double rand = random.NextDouble();
-                    if (rand < randomFillPercent) { bufferOld[x, y] = 0; }
-                    else if (rand < (2*randomFillPercent)) { bufferOld[x, y] = 1; }
-                    else { bufferOld[x, y] = 2; }
+                    if (rand < randomFillPercent) { bufferOld[x, y] = 0; }//Set floor tile
+                    else if (rand < (2*randomFillPercent)) { bufferOld[x, y] = 1; }//Set wall tile
+                    else { bufferOld[x, y] = 2; }//Set bush tile
                 }
             }
         }
@@ -85,7 +85,7 @@ public class CaveGeneratorExpandedQ6 {
                 int [] surroundingWalls = GetSurroundingWallCount(x, y);
 
                 //Use some smoothing rules to generate caves
-                if (surroundingWalls[0] > 4) 
+                if (surroundingWalls[0] > 4)//More than 4 floors around 
                 {
                     bufferNew[x, y] = 0;
                 } 
@@ -93,7 +93,7 @@ public class CaveGeneratorExpandedQ6 {
                 {
                     bufferNew[x, y] = bufferOld[x, y];
                 } 
-                else if (surroundingWalls[1] > 4)
+                else if (surroundingWalls[1] > 4)//More than 4 walls around 
                 {
                     bufferNew[x, y] = 1;
                 }
@@ -101,7 +101,7 @@ public class CaveGeneratorExpandedQ6 {
                 {
                     bufferNew[x, y] = bufferOld[x, y];
                 }
-                else if (surroundingWalls[2] > 4)
+                else if (surroundingWalls[2] > 4)//More than 4 bushes around
                 {
                     bufferNew[x, y] = 2;
                 }
